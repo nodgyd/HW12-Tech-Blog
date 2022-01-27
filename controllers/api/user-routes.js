@@ -33,7 +33,7 @@ router.post("/login", (req, res) => {
     }
 
     const validPassword = dbUserData.checkPassword(req.body.password);
-
+    console.log(validPassword)
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect password!' });
       return;
@@ -46,7 +46,7 @@ router.post("/login", (req, res) => {
   
       res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
-  });
+  }).catch(err => console.log(err));
 });
 
 router.post('/logout', (req, res) => {
